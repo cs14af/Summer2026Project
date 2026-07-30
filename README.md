@@ -40,10 +40,6 @@ TECHNICAL REQUIREMENTS:
     • Agile sprints
     
     • Testing
-
-Current prototype idea: Twitter based setting
-
-Hitting on the nostalgia of people who desire to use the old and familiar types of social media, we give you "Birdie", a remake of the Twitter app scene before it became "X". A faithful recreation of one of the old social media types in the late 2000s - early 2010s era.
     
     
     • Code documentation & user manual
