@@ -1,6 +1,9 @@
 # Summer2026Project
 Final Project Django python 
 
+Alejandro Fernandez (cs14af)
+Neale Matthew Nicolas (survivaldude29)
+Jarek Elizondo
 
 
 RECOMMENDED FEATURES:
@@ -58,3 +61,18 @@ Retweets & Favorites — the original, simpler engagement mechanics, not modern 
 Minimalist, era-accurate UI — a deliberate throwback in color scheme, iconography, and layout
 
 No ads, no algorithm, no noise — just people, posts, and conversation, the way it used to be
+
+
+Agile Planning Methodolgy
+
+Agile manifesto: First preliminary
+
+Joining a randomized group, the planning, the blueprint, and the template
+
+Consistent with adaptation with change, being in a randomized group with randomized members proves adaptability for desire to achieve results for software development projects.
+
+We started with a separated 3 man individualized brainstorm session, to maximize the number of potential app ideas for planning. The result was a nostalgic theme on social media, leading us to the app we call “Birdie”. Birdie is the app that gets inspiration to the late 2000s early 2010’s version of Twitter, before it became “X”. 
+
+We then led to a group meeting session to solidify the blueprint outline of our future made app, starting with the setup of our boilerplate of the Django based framework application to the virtual template setup on github ready for testing.
+
+
