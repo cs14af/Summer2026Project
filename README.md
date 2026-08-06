@@ -75,7 +75,7 @@ We started with a separated 3 man individualized brainstorm session, to maximize
 
 We then led to a group meeting session to solidify the blueprint outline of our future made app, starting with the setup of our boilerplate of the Django based framework application to the virtual template setup on github ready for testing.
  
- Activate Enviornment
+ Activate Environnment
  
  Step 1
 source virt/bin/activate 
