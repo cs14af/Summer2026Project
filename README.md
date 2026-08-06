@@ -88,6 +88,9 @@ python manage.py runserver
 
 Step 4
 Go to ports, under forwarded address
+
+Then
+
 Under ports, go to the link
 
 Step 5
