@@ -74,5 +74,22 @@ Consistent with adaptation with change, being in a randomized group with randomi
 We started with a separated 3 man individualized brainstorm session, to maximize the number of potential app ideas for planning. The result was a nostalgic theme on social media, leading us to the app we call “Birdie”. Birdie is the app that gets inspiration to the late 2000s early 2010’s version of Twitter, before it became “X”. 
 
 We then led to a group meeting session to solidify the blueprint outline of our future made app, starting with the setup of our boilerplate of the Django based framework application to the virtual template setup on github ready for testing.
+ 
+ Activate Enviornment
+ 
+ Step 1
+source virt/bin/activate 
 
+Step 2
+cd Alpha1
+
+Step 3
+python manage.py runserver
+
+Step 4
+Go to ports, under forwarded address
+Under ports, go to the link
+
+Step 5
+Hover over address, open in browser
 
