@@ -1,17 +1,241 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Birdie</title>
-</head>
-<body>
-    <h1>Welcome to Birdie!</h1>
-    {% if user.is_authenticated %}
-    <p>Logged in as @{{ user.username }}</p>
-    <a href="{% url 'edit_profile' %}">Edit Profile</a> |
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a> |
-    <a href="{% url 'register' %}">Register</a>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'testApp/styles.css' %}">
+
+
+<div class="home-page">
+
+
+    <!-- HEADER -->
+    <header class="page-header">
+        Birdie - HOME
+    </header>
+
+
+    <!-- USER INFORMATION -->
+    <div class="user-info">
+
+        {% if user.is_authenticated %}
+
+            <p>Logged in as @{{ user.username }}</p>
+
+            <a href="{% url 'edit_profile' %}">
+                Edit Profile
+            </a>
+
+            |
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+            |
+
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- TOP BUTTONS -->
+    <div class="top-actions">
+
+
+        <!-- PROFILE BUTTON -->
+        <button>
+            👤 Profile
+        </button>
+
+
+        <!-- WRITE A BIRDIE -->
+        <div class="write-birdie" onclick="openWriteBirdie()">
+            ✍️ Write a Birdie...
+        </div>
+
+
+        <!-- JAVASCRIPT -->
+        <script>
+
+            function openWriteBirdie()
+            {
+                let writeBirdie = prompt("Whats the birdie?");
+
+                if (writeBirdie)
+                {
+                    alert("You wrote: " + writeBirdie);
+                }
+            }
+
+        </script>
+
+
+        <!-- COMPOSE BUTTON -->
+        <button>
+            ✍️ Compose
+        </button>
+
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+
+            <button class="active">
+                🏠 Home
+            </button>
+
+            <button>
+                🔍 Search
+            </button>
+
+            <button>
+                👥 Following
+            </button>
+
+            <button>
+                🌐 Discover
+            </button>
+
+            <button>
+                ⚙️ Settings
+            </button>
+
+
+        </aside>
+
+
+        <!-- TIMELINE -->
+        <main class="timeline">
+
+
+            <h2>Timeline</h2>
+
+
+            <!-- BIRDIE #1 -->
+            <div class="birdie">
+
+
+                <div class="birdie-info">
+
+                    <strong>
+                        Birdie #1
+                    </strong>
+
+                    <small>
+                        Author Name • 100 Re-Birdies • 1d ago
+                    </small>
+
+                </div>
+
+
+                <div class="birdie-actions">
+
+                    <button>
+                        🔄 RB
+                    </button>
+
+                    <button>
+                        ⭐ Fav
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BIRDIE #2 -->
+            <div class="birdie">
+
+
+                <div class="birdie-info">
+
+                    <strong>
+                        Birdie #2
+                    </strong>
+
+                    <small>
+                        Author Name • 100 Re-Birdies • 1d ago
+                    </small>
+
+                </div>
+
+
+                <div class="birdie-actions">
+
+                    <button>
+                        🔄 RB
+                    </button>
+
+                    <button>
+                        ⭐ Fav
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BIRDIE #3 -->
+            <div class="birdie">
+
+
+                <div class="birdie-info">
+
+                    <strong>
+                        Birdie #3
+                    </strong>
+
+                    <small>
+                        Author Name • 100 Re-Birdies • 1d ago
+                    </small>
+
+                </div>
+
+
+                <div class="birdie-actions">
+
+                    <button>
+                        🔄 RB
+                    </button>
+
+                    <button>
+                        ⭐ Fav
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
