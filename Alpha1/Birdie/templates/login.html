@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Birdie</title>
+</head>
+<body>
+    <h2>Log in to Birdie</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+</body>
+</html>

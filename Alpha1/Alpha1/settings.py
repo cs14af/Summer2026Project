@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "Birdie",
 ]
 
 MIDDLEWARE = [
@@ -115,3 +116,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+# Where to redirect users if they try to access a protected page
+LOGIN_URL = 'login'
+
+# Where to redirect users after successfully logging in
+LOGIN_REDIRECT_URL = 'profile' # or 'home'
+
+# Where to redirect users after logging out
+LOGOUT_REDIRECT_URL = 'login'
