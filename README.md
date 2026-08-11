@@ -10,6 +10,9 @@ Jarek Elizondo
 
 > 🔗 **Direct Link:** [View Presentation Slides on SharePoint](https://utrgv-my.sharepoint.com/:p:/g/personal/jarek_elizondo01_utrgv_edu/IQBrNUVEenwKRa5FHsOdu9uzAWXnKZQqg6A3LzYEw7r7Jpg?e=iDD04J)
 
+## 📝 User Stories 
+https://docs.google.com/document/d/e/2PACX-1vTa8L-2wFHpCj6CPMM3tuTFSN3lSX4q_s9fNBRpn6slTZDFPWeZoIT6Nfn3Up73G_LbboLEjnDWRpTe/pub
+
 
 RECOMMENDED FEATURES:
 
