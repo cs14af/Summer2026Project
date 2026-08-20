@@ -1,14 +1,140 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Profile - Birdie</title>
-</head>
-<body>
-    <h2>Edit Profile</h2>
+﻿{% extends 'base.html' %} {# Inherits master layout #}
+
+{% block content %}
+
+<!-- Styles for Edit Profile Form -->
+<style>
+    /* Main container box centered on screen */
+    .edit-profile-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #ffffff;
+        border: 1px solid #e1e8ed;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* Header bar with Back button */
+    .edit-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #e1e8ed;
+    }
+
+    /* Page title */
+    .edit-title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    /* Back button */
+    .btn-back-link {
+        text-decoration: none;
+        background: #1da1f2;
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    /* Current avatar preview image */
+    .avatar-preview-box {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .avatar-preview-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #1da1f2;
+    }
+
+    /* Form input group styles */
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #14171a;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccd6dd;
+        border-radius: 8px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    /* Submit Save Button */
+    .btn-save {
+        width: 100%;
+        background: #1da1f2;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+        .btn-save:hover {
+            background: #0c85d0;
+        }
+</style>
+
+<div class="edit-profile-container">
+
+    <!-- Header with Back to Profile Link -->
+    <div class="edit-header">
+        <h2 class="edit-title">⚙️ Edit Profile</h2>
+        <a href="{% url 'profile' user.username %}" class="btn-back-link">
+            ⬅️ Cancel
+        </a>
+    </div>
+
+    <!-- Current Profile Avatar Preview -->
+    <div class="avatar-preview-box">
+        {% if user.profile.profile_picture and user.profile.profile_picture.url %}
+        <img src="{{ user.profile.profile_picture.url }}" alt="Current Avatar" class="avatar-preview-img">
+        {% else %}
+        <div class="avatar-preview-img" style="display:flex; align-items:center; justify-content:center; background:#1da1f2; color:white; font-size:32px; margin:0 auto;">
+            {{ user.username|slice:":1"|upper }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- CRUCIAL: enctype="multipart/form-data" allows uploading image files -->
     <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
+        {% csrf_token %} {# Security token for POST requests #}
+
+        <!-- Render form fields -->
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-save">
+            💾 Save Changes
+        </button>
     </form>
-</body>
-</html>
+
+</div>
+
+{% endblock %}

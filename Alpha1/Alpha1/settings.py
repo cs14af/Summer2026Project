@@ -128,3 +128,11 @@ LOGIN_REDIRECT_URL = 'profile' # or 'home'
 
 # Where to redirect users after logging out
 LOGOUT_REDIRECT_URL = 'login'
+
+import os  # Ensure os module is imported
+
+# URL prefix for serving user-uploaded media files
+MEDIA_URL = '/media/'
+
+# Absolute filesystem path to directory holding uploaded media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

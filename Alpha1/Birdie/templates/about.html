@@ -1,9 +1,22 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %} {# Inherits base layout #}
 
 {% block content %}
 
-<h1>About Our Goal</h1>
-
-<p>Welcome to Birdie success</p>
+<!-- About Page Container -->
+<div style="max-width: 600px; margin: 40px auto; padding: 20px; font-family: sans-serif; text-align: center;">
+    <h1>ℹ️ About Birdie & Our Goal</h1>
+    <p>
+        Birdie is a nostalgic social media experience returning to the core pillars of classic social platforms:
+    </p>
+    <ul style="list-style: none; padding: 0; line-height: 1.8;">
+        <li>⏳ <strong>Chronological Timeline</strong> — No algorithms curation, ever.</li>
+        <li>✍️ <strong>Character Limits</strong> — Concise, creative posts.</li>
+        <li>🔁 <strong>Simple Engagement</strong> — Re-Birdies and Favorites.</li>
+    </ul>
+    <br>
+    <a href="{% url 'home' %}" style="background: #1da1f2; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold;">
+        ⬅️ Back to Home
+    </a>
+</div>
 
 {% endblock %}

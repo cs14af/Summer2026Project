@@ -188,3 +188,247 @@ button:hover {
 .sidebar button.active:hover {
     background: #333;
 }
+
+/* ==========================================================================
+   PROFILE PAGE & ACCESSIBILITY STYLESHEET (CENTERED LAYOUT)
+   ========================================================================== */
+
+/* Main outer wrapper container for center alignment */
+.profile-page-container {
+    max-width: 650px; /* Limits container width for clean reading layout */
+    margin: 0 auto; /* Centers container on page */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff; /* White background */
+    border-left: 1px solid #e1e8ed; /* Subtle left border */
+    border-right: 1px solid #e1e8ed; /* Subtle right border */
+    min-height: 100vh; /* Takes up full screen height */
+}
+
+/* Sticky top navigation bar with accessible back button */
+.profile-nav-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #e1e8ed;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Position header title in center */
+.header-user-title {
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 40px; /* Balances the back button width to center title perfectly */
+}
+
+/* High contrast, accessible Back to Home button */
+.btn-back {
+    text-decoration: none; /* Removes underline */
+    background: #1da1f2; /* Birdie Twitter blue */
+    color: #ffffff; /* White text for high contrast ratio */
+    padding: 6px 14px;
+    border-radius: 20px; /* Rounded pill button */
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+    /* Keyboard focus and hover states for accessibility */
+    .btn-back:hover,
+    .btn-back:focus {
+        background: #0d8bd9;
+        outline: 3px solid #71c9f8;
+    }
+
+/* Header title text styling */
+.header-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.header-tweet-count {
+    font-size: 12px;
+    color: #657786;
+}
+
+/* Gradient background header banner */
+.profile-banner {
+    height: 140px;
+    background: linear-gradient(135deg, #1da1f2 0%, #0056b3 100%);
+}
+
+/* Centered Avatar container */
+.profile-avatar-centered-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the avatar */
+    margin-top: -45px; /* Overlaps avatar onto banner image */
+}
+
+/* Round avatar image and initial fallback style */
+.profile-avatar-img,
+.avatar-fallback {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%; /* Circular avatar */
+    border: 4px solid #ffffff; /* White outline */
+    background: #1da1f2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Center all text within profile info section */
+.centered-text {
+    text-align: center;
+    padding: 16px;
+}
+
+/* Centered container for action buttons */
+.profile-actions-centered {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 14px 0;
+}
+
+/* Base styling for interactive action buttons */
+.btn-action {
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid #1da1f2;
+    transition: all 0.2s ease;
+}
+
+/* Primary Edit Profile / Follow button styling */
+.btn-edit,
+.btn-follow {
+    background: #1da1f2;
+    color: white;
+}
+
+    .btn-edit:hover,
+    .btn-follow:hover,
+    .btn-edit:focus {
+        background: #0c85d0;
+    }
+
+/* User full name title */
+.user-fullname {
+    margin: 8px 0 0 0;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+/* User handle subtitle */
+.user-handle {
+    margin: 2px 0 10px 0;
+    color: #657786;
+}
+
+/* User bio container */
+.user-bio {
+    font-size: 15px;
+    line-height: 1.4;
+    max-width: 480px;
+    margin: 0 auto 12px auto; /* Centers bio paragraph block */
+}
+
+/* Centered list for joined date and location metadata */
+.centered-list {
+    justify-content: center; /* Center list items horizontally */
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 16px;
+    color: #657786;
+    font-size: 14px;
+}
+
+/* Centered Followers and Following stat block */
+.centered-stats {
+    justify-content: center; /* Center stat counters horizontally */
+    display: flex;
+    gap: 24px;
+    margin-top: 14px;
+}
+
+.stat-item {
+    text-decoration: none;
+    color: #14171a;
+    font-size: 14px;
+}
+
+    .stat-item strong {
+        font-weight: 800;
+    }
+
+.stat-label {
+    color: #657786;
+}
+
+/* Tab bar container */
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid #e1e8ed;
+    background: #ffffff;
+}
+
+/* Tab navigation button styles */
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #657786;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+}
+
+    /* Active tab state */
+    .tab-btn.active,
+    .tab-btn:focus {
+        color: #1da1f2;
+        border-bottom-color: #1da1f2;
+        outline: none;
+    }
+
+/* Individual post / Birdie card style */
+.birdie-card {
+    padding: 16px;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.birdie-header {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.birdie-time {
+    color: #657786;
+}
+
+.birdie-text {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* Action icons row inside post card */
+.birdie-actions-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #657786;
+    margin-right: 15px;
+}

@@ -1,11 +1,442 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>@{{ profile.user.username }} - Birdie</title>
-</head>
-<body>
-    <h2>@{{ profile.user.username }}</h2>
-    <p>{{ profile.bio }}</p>
-    <p>Location: {{ profile.location }}</p>
-</body>
-</html>
+﻿{% extends 'base.html' %} {# Inherits master layout from base.html #}
+
+{% block content %}
+
+<!-- ==========================================================================
+   INLINE STYLES FOR NAVIGATION BAR (HOME TOP-LEFT, LOGOUT TOP-RIGHT)
+   ========================================================================== -->
+<style>
+    /* 1. HIDE OLD UNSTYLED TOP NAVIGATION BAR FROM BASE TEMPLATE */
+    header:not(.profile-nav-header),
+    nav:not(.profile-tabs),
+    body > div:first-child:not(.profile-page-container) {
+        display: none !important; /* Hides default base.html header text */
+    }
+
+    /* 2. Main Outer Container (Centered on Screen) */
+    .profile-page-container {
+        max-width: 600px; /* Restricts max width for clean card design */
+        margin: 30px auto; /* Centers container horizontally with top/bottom margin */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #ffffff; /* White background */
+        border: 1px solid #e1e8ed; /* Subtle gray border */
+        border-radius: 16px; /* Rounded corners */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft drop shadow */
+        overflow: hidden;
+    }
+
+    /* 3. Header Navigation Bar (Home Top-Left, Logout Top-Right) */
+    .profile-nav-header {
+        display: flex; /* Flexbox horizontal alignment */
+        justify-content: space-between; /* Pushes Home to left, Logout to right */
+        align-items: center; /* Vertically centers elements */
+        padding: 12px 16px;
+        background: #ffffff;
+        border-bottom: 1px solid #e1e8ed;
+    }
+
+    /* Base button styling for Home & Logout buttons */
+    .btn-nav-link {
+        text-decoration: none; /* Removes link underline */
+        padding: 6px 14px;
+        border-radius: 20px; /* Pill shape */
+        font-weight: bold;
+        font-size: 13px;
+        transition: all 0.2s ease;
+        white-space: nowrap; /* Prevents button text wrapping */
+    }
+
+    /* Top-Left Blue Home Button */
+    .btn-home {
+        background: #1da1f2;
+        color: #ffffff;
+    }
+
+        .btn-home:hover, .btn-home:focus {
+            background: #0c85d0;
+            outline: 3px solid #71c9f8;
+        }
+
+    /* Top-Right Red Logout Button */
+    .btn-logout {
+        background: #ffebe9;
+        color: #cf222e;
+        border: 1px solid #ffc1ba;
+    }
+
+        .btn-logout:hover, .btn-logout:focus {
+            background: #cf222e;
+            color: #ffffff;
+            outline: 3px solid #ff9b93;
+        }
+
+    /* Centered Header User Title */
+    .header-user-title {
+        flex-grow: 1;
+        text-align: center;
+        margin: 0 10px; /* Spacing between left/right buttons */
+    }
+
+    .header-name {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 800;
+        color: #14171a;
+    }
+
+    .header-handle {
+        font-size: 12px;
+        color: #657786;
+    }
+
+    /* 4. Blue Top Banner */
+    .profile-banner {
+        height: 120px;
+        background: linear-gradient(135deg, #1da1f2 0%, #0056b3 100%);
+    }
+
+    /* 5. Centered Avatar Circle */
+    .profile-avatar-centered-container {
+        display: flex;
+        justify-content: center; /* Horizontally centers avatar circle */
+        margin-top: -50px; /* Overlaps banner */
+    }
+
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%; /* Perfect circle */
+        border: 4px solid #ffffff;
+        background-color: #1da1f2;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        object-fit: cover;
+    }
+
+    /* 6. Centered Profile Information Section */
+    .profile-info-section {
+        text-align: center; /* Center aligns text, metadata, and stats */
+        padding: 20px 24px;
+    }
+
+    .user-fullname {
+        margin: 10px 0 2px 0;
+        font-size: 24px;
+        font-weight: 800;
+        color: #14171a;
+    }
+
+    .user-handle {
+        margin: 0 0 16px 0;
+        color: #657786;
+        font-size: 15px;
+    }
+
+    /* Centered Edit Profile / Follow Button */
+    .profile-actions-centered {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 18px;
+    }
+
+    .btn-action {
+        display: inline-block;
+        padding: 8px 24px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .btn-edit, .btn-follow {
+        background: #1da1f2;
+        color: #ffffff;
+    }
+
+        .btn-edit:hover, .btn-follow:hover {
+            background: #0c85d0;
+        }
+
+    /* User Bio Paragraph */
+    .user-bio {
+        font-size: 16px;
+        color: #14171a;
+        max-width: 450px;
+        margin: 0 auto 16px auto; /* Centers paragraph container */
+        line-height: 1.4;
+    }
+
+    /* Centered Metadata Details (Location & Joined Date) */
+    .user-meta-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 16px 0;
+        display: flex;
+        justify-content: center; /* Centers metadata horizontally */
+        gap: 20px;
+        color: #657786;
+        font-size: 14px;
+    }
+
+    /* Centered Followers and Following Stats */
+    .user-stats-bar {
+        display: flex;
+        justify-content: center; /* Centers stats horizontally */
+        gap: 30px;
+        border-top: 1px solid #e1e8ed;
+        padding-top: 16px;
+    }
+
+    .stat-item {
+        text-decoration: none;
+        color: #14171a;
+        font-size: 15px;
+    }
+
+        .stat-item strong {
+            font-weight: 800;
+        }
+
+    .stat-label {
+        color: #657786;
+    }
+
+    /* 7. Centered Navigation Tabs */
+    .profile-tabs {
+        display: flex;
+        border-top: 1px solid #e1e8ed;
+        border-bottom: 1px solid #e1e8ed;
+        background: #f8f9fa;
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: 12px;
+        background: none;
+        border: none;
+        font-weight: bold;
+        color: #657786;
+        cursor: pointer;
+        font-size: 14px;
+        border-bottom: 3px solid transparent;
+    }
+
+        .tab-btn.active, .tab-btn:focus {
+            color: #1da1f2;
+            border-bottom-color: #1da1f2;
+            background: #ffffff;
+        }
+
+    /* 8. Birdie Post Timeline Cards */
+    .user-feed {
+        padding: 10px 0;
+    }
+
+    .birdie-card {
+        padding: 16px 24px;
+        border-bottom: 1px solid #e1e8ed;
+        text-align: left; /* Post body text aligns left for readability */
+    }
+
+    .birdie-header {
+        display: flex;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .birdie-time {
+        color: #657786;
+    }
+
+    .birdie-text {
+        margin: 8px 0;
+        font-size: 15px;
+        color: #14171a;
+    }
+
+    .birdie-actions-bar button {
+        background: #f5f8fa;
+        border: 1px solid #e1e8ed;
+        border-radius: 12px;
+        padding: 4px 12px;
+        cursor: pointer;
+        color: #657786;
+        margin-right: 10px;
+        font-size: 13px;
+    }
+
+        .birdie-actions-bar button:hover {
+            background: #e8f5fe;
+            color: #1da1f2;
+        }
+</style>
+
+
+<!-- ==========================================================================
+   PROFILE HTML CONTENT LAYOUT
+   ========================================================================== -->
+<div class="profile-page-container">
+
+    <!-- ================= ACCESSIBLE NAVIGATION HEADER ================= -->
+    <header class="profile-nav-header" aria-label="Profile navigation header">
+
+        <!-- TOP-LEFT: Home Link Button -->
+        <a href="{% url 'home' %}" class="btn-nav-link btn-home" aria-label="Go back to Home page">
+            ⬅️ Home
+        </a>
+
+        <!-- CENTER: Header User Title -->
+        <div class="header-user-title">
+            <h1 class="header-name">
+                {{ profile.user.first_name|default:profile.user.username }}
+            </h1>
+            <span class="header-handle">
+                @{{ profile.user.username }}
+            </span>
+        </div>
+
+        <!-- TOP-RIGHT: Logout Button (Only rendered if user is logged in) -->
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="btn-nav-link btn-logout" aria-label="Log out of account">
+            🚪 Logout
+        </a>
+        {% else %}
+        <span style="width: 75px;"><!-- Empty spacer balancing left side when logged out --></span>
+        {% endif %}
+
+    </header>
+
+
+    <!-- ================= PROFILE CARD (CENTERED) ================= -->
+    <div class="profile-card">
+
+        <!-- 1. BLUE HEADER BANNER -->
+        <div class="profile-banner" role="img" aria-label="Profile header banner"></div>
+
+        <!-- 2. CENTERED AVATAR CIRCLE -->
+        <div class="profile-avatar-centered-container">
+            {% if profile.profile_picture and profile.profile_picture.url %}
+            <!-- Render uploaded avatar image -->
+            <img src="{{ profile.profile_picture.url }}" alt="@{{ profile.user.username }}'s profile picture" class="avatar-circle">
+            {% else %}
+            <!-- Render fallback circle with initial letter -->
+            <div class="avatar-circle" aria-hidden="true">
+                {{ profile.user.username|slice:":1"|upper }}
+            </div>
+            {% endif %}
+        </div>
+
+
+        <!-- 3. CENTERED USER DETAILS & ACTIONS -->
+        <div class="profile-info-section">
+
+            <!-- Full Display Name -->
+            <h2 class="user-fullname">
+                {{ profile.user.first_name }} {{ profile.user.last_name }}
+            </h2>
+
+            <!-- @Username Handle -->
+            <p class="user-handle">@{{ profile.user.username }}</p>
+
+            <!-- Centered Action Buttons (Edit Profile OR Follow) -->
+            <div class="profile-actions-centered">
+                {% if user.is_authenticated and user == profile.user %}
+                <!-- Show Edit Profile button if viewing own profile -->
+                <a href="{% url 'edit_profile' %}" class="btn-action btn-edit" aria-label="Edit your profile settings">
+                    ⚙️ Edit Profile
+                </a>
+                {% else %}
+                <!-- Show Follow button when viewing someone else -->
+                <button class="btn-action btn-follow" aria-label="Follow @{{ profile.user.username }}">
+                    ➕ Follow
+                </button>
+                {% endif %}
+            </div>
+
+            <!-- User Biography -->
+            <div class="user-bio">
+                {% if profile.bio %}
+                <p>{{ profile.bio }}</p>
+                {% else %}
+                <p class="text-muted"><em>No bio available yet.</em></p>
+                {% endif %}
+            </div>
+
+            <!-- Centered Location & Joined Date Metadata -->
+            <ul class="user-meta-list" aria-label="User metadata details">
+                {% if profile.location %}
+                <li>
+                    <span aria-hidden="true">📍</span>
+                    <span>{{ profile.location }}</span>
+                </li>
+                {% endif %}
+
+                <li>
+                    <span aria-hidden="true">📅</span>
+                    <span>Joined {{ profile.created_at|date:"F Y"|default:"August 2026" }}</span>
+                </li>
+            </ul>
+
+            <!-- Centered Followers & Following Numerical Stats -->
+            <div class="user-stats-bar">
+                <a href="#" class="stat-item" aria-label="{{ profile.following.count|default:0 }} accounts following">
+                    <strong>{{ profile.following.count|default:0 }}</strong>
+                    <span class="stat-label">Following</span>
+                </a>
+
+                <a href="#" class="stat-item" aria-label="{{ profile.followers.count|default:0 }} followers">
+                    <strong>{{ profile.followers.count|default:0 }}</strong>
+                    <span class="stat-label">Followers</span>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= ACCESSIBLE NAVIGATION TABS ================= -->
+    <nav class="profile-tabs" role="tablist" aria-label="User content categories">
+        <button role="tab" aria-selected="true" class="tab-btn active">
+            🐤 Birdies
+        </button>
+        <button role="tab" aria-selected="false" class="tab-btn">
+            🔄 Re-Birdies
+        </button>
+        <button role="tab" aria-selected="false" class="tab-btn">
+            ⭐ Favorites
+        </button>
+    </nav>
+
+
+    <!-- ================= USER POST TIMELINE FEED ================= -->
+    <main class="user-feed" role="region" aria-label="@{{ profile.user.username }}'s posts timeline">
+
+        <!-- Individual Birdie Post Card -->
+        <article class="birdie-card">
+            <div class="birdie-header">
+                <strong>@{{ profile.user.username }}</strong>
+                <span class="birdie-time">• 2h ago</span>
+            </div>
+            <p class="birdie-text">
+                Setting up my Birdie profile! Excited to use a classic chronological timeline again. 🐦✨
+            </p>
+            <div class="birdie-actions-bar">
+                <button aria-label="Re-birdie this post">🔄 RB</button>
+                <button aria-label="Favorite this post">⭐ Fav</button>
+            </div>
+        </article>
+
+    </main>
+
+</div>
+
+{% endblock %}
