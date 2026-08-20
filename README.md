@@ -71,21 +71,35 @@ Minimalist, era-accurate UI — a deliberate throwback in color scheme, iconogra
 No ads, no algorithm, no noise — just people, posts, and conversation, the way it used to be
 
 
-Agile Planning Methodolgy
+Agile Planning Methodology
 
-Agile manifesto: First preliminary
-
-Joining a randomized group, the planning, the blueprint, and the template
+Agile manifesto: First Preliminary - Joining a randomized group, the planning, the blueprint, and the template
 
 Consistent with adaptation with change, being in a randomized group with randomized members proves adaptability for desire to achieve results for software development projects.
 
 We started with a separated 3 man individualized brainstorm session, to maximize the number of potential app ideas for planning. The result was a nostalgic theme on social media, leading us to the app we call “Birdie”. Birdie is the app that gets inspiration to the late 2000s early 2010’s version of Twitter, before it became “X”. 
 
-We then led to a group meeting session to solidify the blueprint outline of our future made app, starting with the setup of our boilerplate of the Django based framework application to the virtual template setup on github ready for testing.
+We then led to a group meeting session to solidify the blueprint outline of our future made app, starting with the setup of our boilerplate of the Django based framework application to the virtual template setup on Github ready for testing.
+
+
+Agile manifesto: Second Preliminary - The Prototype
+
+To push for results, we worked on the necessary code to start the basic running of our homepage and developed user stories to outline how we wanted to make the app work.
+
+With our developed stories, this helped us work on the concept of intended features of our app, which helped us make our wireframe setup on Powerpoint slides for our vision of our app.
+
+Considering the necessity of workflow under asynchronous timeframes, three different components are all coded in 3 separate local computers, which was the skeleton of our home page, the navbar, and our user registration/login system. This was then all connected by making new branches and connecting them all, in a checkpoint by checkpoint manner. Each time a new branch was made and code was changed, the code was debugged to prevent a bottleneck to workflow when possible. This project considers the "main" branch always being the branch that is the finalized working draft versions of our code, while other branches are considered templates, components, or "checkpoints" to test proper github pushes, pulls, and merges of code.
+
+
+Agile manifesto: Final Presentation to delivery
+
+We then settled into direct designation of 3 roles with flexibility: a front-end developer, a back-end developer, and someone who is to connect the software to a cloud platform server, which is (???).
+(Insert brainstorming session and more essential details)
+
+
+How to Activate Environment
  
- Activate Environnment
- 
- Step 1
+Step 1
 source virt/bin/activate 
 
 Step 2

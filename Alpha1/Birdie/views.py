@@ -69,10 +69,7 @@ def edit_profile_view(request):
         form = ProfileUpdateForm(instance=request.user.profile)
     return render(request, 'edit_profile.html', {'form': form})
 
-def about_our_goal(request):
+# View function for the About / Our Goal page
+def about_view(request):
+    # Render the about.html template page
     return render(request, 'about.html')
-
-
-#@login_required // creating a chirp
-#def create_chirp_view(request):
-    # Only logged-in users can post
