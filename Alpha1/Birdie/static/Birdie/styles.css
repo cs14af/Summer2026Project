@@ -1,15 +1,26 @@
 /* home.html */
 
+/* Add this new wrapper class */
+.home-wrapper {
+    min-height: 100vh; /* Forces the container to be at least the height of the screen */
+    background: linear-gradient(bisque, beige, cyan, skyblue);
+    background-attachment: fixed; /* Keeps gradient smooth when scrolling */
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    /* Padding prevents the layout from collapsing into the navbar */
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    margin: 0;
+}
 
-
+/* Update your home-page class to remove the background and top margin */
 .home-page {
     width: 95%;
     max-width: 1100px;
-    margin: 20px auto;
+    margin: 0 auto; /* Removed the 20px top/bottom margin since the wrapper handles it */
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: linear-gradient(bisque, beige, cyan, skyblue);
 }
-
 
 /* =========================
    HEADER
