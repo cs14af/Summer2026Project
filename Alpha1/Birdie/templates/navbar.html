@@ -1,22 +1,22 @@
-<!-- Navigation Bar Component Template -->
+<!-- Navigation Bar Component Template 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
 
-        <!-- App Logo / Title Link -->
+        App Logo / Title Link 
         <a class="navbar-brand" href="{% url 'home' %}">Birdie</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navigation Links List -->
+            Navigation Links List 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <!-- 1. Home Link -->
+                1. Home Link 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">
                         Home
                     </a>
                 </li>
 
-                <!-- 2. About Link (Only shown when user is logged in) -->
+                2. About Link (Only shown when user is logged in) 
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about_our_goal' %}">
@@ -25,9 +25,9 @@
                 </li>
                 {% endif %}
 
-            </ul>
+            </ul> -->
 
-            <!-- Right-side User Authentication Controls -->
+            <!-- Right-side User Authentication Controls 
             <div class="d-flex align-items-center gap-3">
                 {% if user.is_authenticated %}
                 <span>Welcome to Birdie, <strong>{{ user.username }}</strong></span>
@@ -40,4 +40,4 @@
         </div>
 
     </div>
-</nav>
+</nav>-->
