@@ -13,3 +13,7 @@ virt
 # Data bases
 db.sqlite3
 mydb.py
+
+#Environmental variables
+
+.env

@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os 
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -27,9 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://localhost:8000",
-]
+
 
 # Application definition
 
@@ -76,13 +75,25 @@ WSGI_APPLICATION = "Alpha1.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+#DATABASES = {
+ #   "default": {
+  #      "ENGINE": "django.db.backends.sqlite3",
+   #     "NAME": BASE_DIR / "db.sqlite3",
+    #}
+#}
+DATABASES ={
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT' :os.getenv("DB_PORT"),
+        'OPTIONS' : {
+            "sslmode" : "require",
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -128,3 +139,11 @@ LOGIN_REDIRECT_URL = 'profile' # or 'home'
 
 # Where to redirect users after logging out
 LOGOUT_REDIRECT_URL = 'login'
+
+import os  # Ensure os module is imported
+
+# URL prefix for serving user-uploaded media files
+MEDIA_URL = '/media/'
+
+# Absolute filesystem path to directory holding uploaded media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
