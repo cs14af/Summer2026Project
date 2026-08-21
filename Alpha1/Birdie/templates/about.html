@@ -3,200 +3,166 @@
 {% block content %}
 
 <!-- ==========================================================================
-   INLINE STYLES FOR SLEEK & PROFESSIONAL ABOUT & MEET THE TEAM PAGE
+   INLINE STYLES FOR EARLY 2010s SOCIAL MEDIA THEME
    ========================================================================== -->
 <style>
-    /* 1. Main Container Wrapper (Sleek Minimalist Layout) */
+    /* 1. Main Container Wrapper (Classic Timeline Width) */
     .about-page-container {
-        max-width: 800px; /* Optimal reading container width */
-        margin: 40px auto; /* Centers container on screen */
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-        background-color: #ffffff; /* Crisp white card background */
-        border: 1px solid #edf2f7; /* High-end subtle border */
-        border-radius: 20px; /* Smooth modern rounded corners */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Ultra-soft modern shadow */
-        padding: 40px;
+        max-width: 830px; 
+        margin: 40px auto; 
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: green; 
+        border: 1px solid #e1e8ed; 
+        border-radius: 5px; /* Tighter 2010s corners */
+        overflow: hidden; /* Contains the header background */
     }
 
-    /* 2. Hero Header Section */
+    /* 2. Hero Header Section (Module Header) */
     .about-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .brand-badge {
-        display: inline-block;
-        background: #e8f5fe;
-        color: #1da1f2;
-        font-size: 13px;
-        font-weight: 700;
-        padding: 6px 16px;
-        border-radius: 30px;
-        margin-bottom: 16px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
+        background-color: #f5f8fa;
+        border-bottom: 1px solid #e1e8ed;
+        padding: 20px 20px;
+        text-align: left;
     }
 
     .about-title {
-        font-size: 36px;
-        font-weight: 800;
-        color: #0f1419;
-        margin: 0 0 12px 0;
-        letter-spacing: -0.5px;
+        font-size: 24px;
+        font-weight: 300; /* Lighter font weights were popular for headers */
+        color: #333333;
+        margin: 0 0 5px 0;
     }
 
     .about-subtitle {
-        font-size: 16px;
-        color: #536471;
-        max-width: 540px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-
-    /* 3. Sleek Core Features Grid */
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 16px;
-        margin-bottom: 48px;
-    }
-
-    .feature-card {
-        background: #f7f9fa;
-        border: 1px solid #eff3f4;
-        border-radius: 14px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.2s ease;
-    }
-
-        .feature-card:hover {
-            border-color: #cfd9de;
-            background: #ffffff;
-        }
-
-    .feature-icon {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-
-    .feature-title {
-        font-size: 15px;
-        font-weight: 700;
-        color: #0f1419;
-        margin: 0 0 4px 0;
-    }
-
-    .feature-desc {
-        font-size: 13px;
-        color: #536471;
+        font-size: 14px;
+        color: #8899a6;
         margin: 0;
         line-height: 1.4;
     }
 
-    /* 4. Section Heading Divider */
-    .section-heading {
-        text-align: center;
-        margin-bottom: 24px;
+    /* 3. Feed Section Styling (List format instead of grid) */
+    .section-container {
+        border-bottom: 1px solid #e1e8ed;
+        padding: 0;
     }
 
-    .section-title {
-        font-size: 24px;
-        font-weight: 800;
-        color: #0f1419;
+    .section-heading-bar {
+        background-color: #00B488;
+        border-bottom: 1px solid #e1e8ed;
+        padding: 12px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333333;
+    }
+
+    /* 4. Core Features "Tweets" */
+    .feature-item {
+        border-bottom: 1px solid #e1e8ed;
+        padding: 15px 20px;
+        display: flex;
+        align-items: flex-start;
+        background-color: #cfcccc;
+    }
+
+    .feature-item:hover {
+        background-color: #f5f8fa; /* Classic hover highlight */
+    }
+
+    .feature-icon {
+        font-size: 20px;
+        margin-right: 15px;
+        width: 30px;
+        text-align: center;
+    }
+
+    .feature-content h3 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+        margin: 0 0 3px 0;
+    }
+
+    .feature-content p {
+        font-size: 14px;
+        color: #333333;
         margin: 0;
-        letter-spacing: -0.3px;
     }
 
-    /* 5. Meet The Team Grid Layout */
-    .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 20px;
-        margin-bottom: 40px;
+    /* 5. Meet The Team "Profiles" */
+    .team-item {
+        border-bottom: 1px solid #e1e8ed;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        background: #cfcccc;
     }
 
-    /* Sleek Minimalist Team Card (Job Titles Removed) */
-    .team-card {
-        background: #ffffff;
-        border: 1px solid #eff3f4;
-        border-radius: 16px;
-        padding: 28px 20px;
-        text-align: center;
-        transition: all 0.25s ease;
+    .team-item:hover {
+        background-color: #f5f8fa;
     }
 
-        .team-card:hover {
-            transform: translateY(-4px);
-            border-color: #1da1f2;
-            box-shadow: 0 12px 24px rgba(29, 161, 242, 0.08);
-        }
-
-    /* Minimalist Initials Avatar Circle */
+    /* Classic Square Avatars with slight rounding */
     .team-avatar {
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
-        color: #ffffff;
+        width: 48px;
+        height: 48px;
+        border-radius: 5px; 
+        background-color: #dddddd;
+        color: #666666;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 22px;
-        font-weight: 800;
-        margin: 0 auto 16px auto;
-        box-shadow: 0 4px 12px rgba(29, 161, 242, 0.2);
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 15px;
     }
 
-    /* Member Display Name */
+    .member-info {
+        flex-grow: 1;
+    }
+
     .member-name {
-        font-size: 16px;
-        font-weight: 700;
-        color: #0f1419;
-        margin: 0 0 10px 0;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+        margin: 0 0 2px 0;
     }
 
-    /* GitHub Handle Badge */
+    /* Classic Twitter Blue Handle */
     .member-github {
-        display: inline-block;
         font-size: 13px;
-        color: #536471;
-        background: #f7f9fa;
-        border: 1px solid #eff3f4;
-        padding: 4px 14px;
-        border-radius: 20px;
+        color: #0084b4; 
         text-decoration: none;
-        font-weight: 600;
-        transition: all 0.2s ease;
     }
 
-    .team-card:hover .member-github {
-        background: #e8f5fe;
-        color: #1da1f2;
-        border-color: #71c9f8;
+    .member-github:hover {
+        text-decoration: underline;
     }
 
     /* 6. Navigation Footer Button */
-    .center-wrapper {
-        text-align: center;
+    .footer-action {
+        background-color: #74bae9;
+        padding: 15px 20px;
+        text-align: right; /* Standard action alignment */
     }
 
+    /* Classic 2011 Gradient Button */
     .btn-back-home {
         display: inline-block;
-        background: #0f1419;
-        color: #ffffff;
-        padding: 12px 28px;
-        border-radius: 30px;
-        font-weight: 700;
+        background:#f5f5f5;
+        background: linear-gradient(to bottom, #ffffff 0%, #ebebeb 100%);
+        color: #333333;
+        padding: 8px 14px;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-weight: bold;
         text-decoration: none;
-        font-size: 14px;
-        transition: all 0.2s ease;
+        font-size: 13px;
     }
 
-        .btn-back-home:hover {
-            background: #1da1f2;
-            transform: scale(1.02);
-        }
+    .btn-back-home:hover {
+        background: #e6e6e6;
+        border-color: #999999;
+        cursor: pointer;
+    }
 </style>
 
 
@@ -206,81 +172,81 @@
 <div class="about-page-container">
 
     <!-- ================= HERO HEADER SECTION ================= -->
-    <header class="about-header">
-        <span class="brand-badge">Birdie Project</span>
-        <h1 class="about-title">About Birdie</h1>
+    <div class="about-header">
+        <h1 class="about-title">About the Birdie Project</h1>
         <p class="about-subtitle">
-            A faithful recreation of the classic chronological Twitter app scene from the late 2000s & early 2010s.
+            A faithful recreation of the classic chronological app scene from the late 2000s & early 2010s.
         </p>
-    </header>
+    </div>
 
+    <!-- ================= CORE FEATURES FEED ================= -->
+    <div class="section-container">
+        <div class="section-heading-bar">Platform Features</div>
 
-    <!-- ================= CORE FEATURES GRID ================= -->
-    <section>
-        <div class="features-grid">
-
-            <!-- Feature 1 -->
-            <div class="feature-card">
-                <div class="feature-icon">⏳</div>
-                <h3 class="feature-title">Chronological</h3>
-                <p class="feature-desc">No algorithmic manipulation, ever.</p>
+        <!-- Feature 1 -->
+        <div class="feature-item">
+            <div class="feature-icon">⏳</div>
+            <div class="feature-content">
+                <h3>Chronological</h3>
+                <p>No algorithmic manipulation, ever.</p>
             </div>
-
-            <!-- Feature 2 -->
-            <div class="feature-card">
-                <div class="feature-icon">✍️</div>
-                <h3 class="feature-title">Concise Posts</h3>
-                <p class="feature-desc">Character-limited for authentic brevity.</p>
-            </div>
-
-            <!-- Feature 3 -->
-            <div class="feature-card">
-                <div class="feature-icon">🔁</div>
-                <h3 class="feature-title">Classic Feed</h3>
-                <p class="feature-desc">Original Re-Birdies and Favorites.</p>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- ================= MEET THE TEAM SECTION ================= -->
-    <section>
-        <div class="section-heading">
-            <h2 class="section-title">Meet the Team</h2>
         </div>
 
-        <div class="team-grid">
+        <!-- Feature 2 -->
+        <div class="feature-item">
+            <div class="feature-icon">✍️</div>
+            <div class="feature-content">
+                <h3>Concise Posts</h3>
+                <p>Character-limited for authentic brevity.</p>
+            </div>
+        </div>
 
-            <!-- MEMBER #1: Alejandro Fernandez -->
-            <article class="team-card">
-                <div class="team-avatar" aria-hidden="true">AF</div>
+        <!-- Feature 3 -->
+        <div class="feature-item">
+            <div class="feature-icon">🔁</div>
+            <div class="feature-content">
+                <h3>Classic Feed</h3>
+                <p>Original Re-Birdies and Favorites.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MEET THE TEAM PROFILES ================= -->
+    <div class="section-container" style="border-bottom: none;">
+        <div class="section-heading-bar">Who to follow</div>
+
+        <!-- MEMBER #1: Alejandro Fernandez -->
+        <div class="team-item">
+            <div class="team-avatar" aria-hidden="true">AF</div>
+            <div class="member-info">
                 <h3 class="member-name">Alejandro Fernandez</h3>
-                <span class="member-github">@cs14af</span>
-            </article>
-
-            <!-- MEMBER #2: Neale Matthew Nicolas -->
-            <article class="team-card">
-                <div class="team-avatar" aria-hidden="true">NN</div>
-                <h3 class="member-name">Neale Matthew Nicolas</h3>
-                <span class="member-github">@survivaldude29</span>
-            </article>
-
-            <!-- MEMBER #3: Jarek Elizondo -->
-            <article class="team-card">
-                <div class="team-avatar" aria-hidden="true">JE</div>
-                <h3 class="member-name">Jarek Elizondo</h3>
-                <span class="member-github">@JarekElizondo</span>
-            </article>
-
+                <a href="#" class="member-github">@cs14af</a>
+            </div>
         </div>
-    </section>
 
+        <!-- MEMBER #2: Neale Matthew Nicolas -->
+        <div class="team-item">
+            <div class="team-avatar" aria-hidden="true">NN</div>
+            <div class="member-info">
+                <h3 class="member-name">Neale Matthew Nicolas</h3>
+                <a href="#" class="member-github">@survivaldude29</a>
+            </div>
+        </div>
+
+        <!-- MEMBER #3: Jarek Elizondo -->
+        <div class="team-item">
+            <div class="team-avatar" aria-hidden="true">JE</div>
+            <div class="member-info">
+                <h3 class="member-name">Jarek Elizondo</h3>
+                <a href="#" class="member-github">@JarekElizondo</a>
+            </div>
+        </div>
+    </div>
 
     <!-- ================= FOOTER BACK BUTTON ================= -->
-    <div class="center-wrapper">
+    <div class="footer-action">
         <a href="{% url 'home' %}" class="btn-back-home">
-            ⬅️ Back to Home
+            &laquo; Back to Home
         </a>
     </div>
 
