@@ -84,11 +84,14 @@
 
     /* 5. Avatar Circle -> Classic Square Avatar */
     .profile-avatar-centered-container {
-        display: flex;
-        justify-content: center; 
-        margin-top: -40px; /* Overlaps banner slightly less */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
     }
-
     /* Renamed class in CSS, but left original name in case your backend targets it */
     .avatar-circle {
         width: 80px; /* Slightly smaller */
@@ -338,14 +341,22 @@
 
         <!-- 2. CENTERED AVATAR CIRCLE -->
         <div class="profile-avatar-centered-container">
-        {% if profile.image %}
-        <img src="{{ profile.image.url }}" alt="Profile picture" class="avatar-circle">
-        {% else %}
+
+    {% if profile.profile_picture %}
+
+        <img src="{{ profile.profile_picture.url }}"
+             alt="Profile picture"
+             class="avatar-circle">
+
+    {% else %}
+
         <div class="avatar-circle" aria-hidden="true">
-        {{ profile.user.username|slice:":1"|upper }}
+            {{ profile.user.username|slice:":1"|upper }}
         </div>
-        {% endif %}
-        </div>
+
+    {% endif %}
+
+    </div>
 
 
         <!-- 3. CENTERED USER DETAILS & ACTIONS -->

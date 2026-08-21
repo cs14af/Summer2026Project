@@ -21,14 +21,14 @@
     <div class="user-info">
         <!-- Check if the user is currently logged into an account -->
         {% if user.is_authenticated %}
-        <!-- Displays the logged-in user's handle -->
-        <p>Logged in as @{{ user.username }}</p>
-        <!-- Link to the Edit Profile / Settings page -->
+        <!-- Displays the logged-in user's handle 
+        <p>Logged in as @{{ user.username }}</p> -->
+        <!-- Link to the Edit Profile / Settings page 
         <a href="{% url 'edit_profile' %}">Edit Profile</a>
-        |
-        <!-- Link to log out of the account -->
+        | -->
+        <!-- Link to log out of the account 
         <a href="{% url 'logout' %}">Logout</a>
-        {% else %}
+        {% else %} -->
         <!-- If visitor is a guest, show Login and Register options -->
         <a href="{% url 'login' %}">Login</a>
         |
@@ -41,7 +41,7 @@
         <!-- Links to profile if logged in; redirects to login page if guest -->
         {% if user.is_authenticated %}
         <a href="{% url 'profile' user.username %}">
-            <button> Profile</button>
+            
         </a>
         {% else %}
         <a href="{% url 'login' %}">
@@ -132,11 +132,11 @@
             </a>
             
 
-            <!-- 6. SETTINGS BUTTON (Links to profile edit page) -->
+            <!-- 6. SETTINGS BUTTON (Links to profile edit page) 
             {% if user.is_authenticated %}
             <a href="{% url 'edit_profile' %}">
                 <button>Settings</button>
-            </a>
+            </a>-->
 
             {% else %}
             <a href="{% url 'login' %}">
