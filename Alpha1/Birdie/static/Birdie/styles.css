@@ -1,9 +1,13 @@
+/* home.html */
+
+
 
 .home-page {
     width: 95%;
     max-width: 1100px;
     margin: 20px auto;
     font-family: Arial, sans-serif;
+    background: linear-gradient(bisque, beige, cyan, skyblue);
 }
 
 
