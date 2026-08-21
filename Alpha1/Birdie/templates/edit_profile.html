@@ -1,102 +1,174 @@
-﻿{% extends 'base.html' %} {# Inherits master layout #}
+﻿{% extends 'base.html' %} 
+{# Inherits master layout #}
 
+{% load static %}
 {% block content %}
 
-<!-- Styles for Edit Profile Form -->
+<!-- ==========================================================================
+   INLINE STYLES FOR EARLY 2010s "BIRDIE" EDIT PROFILE PAGE
+   ========================================================================== -->
 <style>
-    /* Main container box centered on screen */
+    /* 1. Main container box */
     .edit-profile-container {
-        max-width: 500px;
+        max-width: 540px;
         margin: 40px auto;
-        padding: 30px;
         background: #ffffff;
         border: 1px solid #e1e8ed;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        border-radius: 5px; /* Tighter 2010s corners */
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        overflow: hidden; /* Contains the header background */
     }
 
-    /* Header bar with Back button */
+    /* 2. Header bar (Module Header Style) */
     .edit-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 20px;
-        padding-bottom: 12px;
+        background-color: #f5f8fa;
+        padding: 12px 20px;
         border-bottom: 1px solid #e1e8ed;
     }
 
     /* Page title */
     .edit-title {
         margin: 0;
-        font-size: 20px;
-        font-weight: 800;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333333;
     }
 
-    /* Back button */
+    /* Classic Grey Gradient Cancel Button */
     .btn-back-link {
         text-decoration: none;
-        background: #1da1f2;
-        color: white;
-        padding: 6px 14px;
-        border-radius: 20px;
+        padding: 6px 12px;
+        border-radius: 4px;
         font-weight: bold;
-        font-size: 13px;
+        font-size: 12px;
+        border: 1px solid #cccccc;
+        background: #f5f5f5;
+        background: linear-gradient(to bottom, #ffffff 0%, #ebebeb 100%);
+        color: #333333;
+        text-shadow: 0 1px 0 #ffffff;
     }
 
-    /* Current avatar preview image */
+    .btn-back-link:hover {
+        background: #e6e6e6;
+        border-color: #999999;
+        cursor: pointer;
+    }
+
+    /* Form Content Wrapper */
+    .edit-content {
+        padding: 25px 30px;
+    }
+
+    /* 3. Current avatar preview image (Classic Square!) */
     .avatar-preview-box {
-        text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
 
     .avatar-preview-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
+        width: 73px; /* Classic standard dimensions */
+        height: 73px;
+        border-radius: 5px; /* SQAURE AVATAR */
         object-fit: cover;
-        border: 3px solid #1da1f2;
-    }
-
-    /* Form input group styles */
-    .form-group {
-        margin-bottom: 18px;
-    }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 6px;
-            font-size: 14px;
-            color: #14171a;
-        }
-
-    .form-control {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccd6dd;
-        border-radius: 8px;
-        font-size: 14px;
-        box-sizing: border-box;
-    }
-
-    /* Submit Save Button */
-    .btn-save {
-        width: 100%;
-        background: #1da1f2;
-        color: white;
-        padding: 12px;
-        border: none;
-        border-radius: 20px;
+        border: 1px solid #cccccc;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        background-color: #dddddd;
+        color: #666666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
         font-weight: bold;
-        font-size: 15px;
-        cursor: pointer;
-        transition: background 0.2s ease;
     }
 
-        .btn-save:hover {
-            background: #0c85d0;
-        }
+    .avatar-help-text {
+        font-size: 13px;
+        color: #8899a6;
+    }
+
+    /* 4. Form input group styles (Targeting Django's form.as_p) */
+    .form-group p {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 13px;
+        color: #333333;
+    }
+
+    /* Skeuomorphic inset shadows for inputs */
+    .form-group input[type="text"],
+    .form-group input[type="url"],
+    .form-group textarea,
+    .form-group input[type="file"] {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        font-size: 13px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Classic inner shadow */
+        color: #333333;
+    }
+
+    .form-group input[type="file"] {
+        padding: 5px;
+        background: #f9f9f9;
+        cursor: pointer;
+    }
+
+    /* The glowing blue focus ring from 2011 */
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #56b4ef;
+        box-shadow: 0 0 5px rgba(86, 180, 239, 0.5);
+    }
+
+    .form-group textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+
+    .form-group .helptext {
+        font-size: 11px;
+        color: #8899a6;
+        display: block;
+        margin-top: 3px;
+    }
+
+    /* 5. Submit Save Button (Classic Twitter Blue) */
+    .form-actions {
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px solid #e1e8ed;
+        text-align: right; /* Standard web form alignment for primary actions */
+    }
+
+    .btn-save {
+        background: linear-gradient(to bottom, #00aced 0%, #0084b4 100%);
+        border: 1px solid #00668c;
+        color: #ffffff;
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.2); /* Indented text effect */
+    }
+
+    .btn-save:hover {
+        background: #0084b4;
+    }
 </style>
 
 <div class="edit-profile-container">
@@ -105,7 +177,7 @@
     <div class="edit-header">
         <h2 class="edit-title">⚙️ Edit Profile</h2>
         <a href="{% url 'profile' user.username %}" class="btn-back-link">
-            ⬅️ Cancel
+            Cancel
         </a>
     </div>
 
@@ -131,7 +203,7 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn-save">
-            💾 Save Changes
+            Save Changes
         </button>
     </form>
 
