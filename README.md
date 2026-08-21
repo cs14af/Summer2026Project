@@ -46,7 +46,7 @@ classDiagram
     class Chirp {
         +int id
         +User author
-        +string content (140 chars)
+        +string content (129 chars)
         +datetime created_at
         +int rebirdie_count
         +int favorite_count
