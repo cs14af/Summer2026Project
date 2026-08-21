@@ -183,8 +183,8 @@ Considering the necessity of workflow under asynchronous timeframes, three diffe
 
 Agile manifesto: Final Presentation to delivery
 
-We then settled into direct designation of 3 roles with flexibility: a front-end developer, a back-end developer, and someone who is to connect the software to a cloud platform server, which is (???).
-(Insert brainstorming session and more essential details)
+We then settled into direct designation of 3 roles with flexibility: a front-end developer, a back-end developer, and someone who is to connect the software to a cloud platform server.
+Combining the code together was a hassle due to different working parts unable to merge in Github, however, with AI assistance, it was possible to deal with the bugs in this timefrme.
 
 
 How to Activate Environment
