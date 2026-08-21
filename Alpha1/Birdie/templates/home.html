@@ -33,9 +33,9 @@
     <div class="user-info">
         {% if user.is_authenticated %}
         {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        |
-        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}"></a>
+        
+        <a href="{% url 'register' %}"></a>
         {% endif %}
     </div>
 
@@ -45,7 +45,7 @@
         <a href="{% url 'profile' user.username %}"></a>
         {% else %}
         <a href="{% url 'login' %}">
-            <button> Profile</button>
+
         </a>
         {% endif %}
 
@@ -112,11 +112,11 @@
 
             {% if user.is_authenticated %}
             <a href="{% url 'edit_profile' %}">
-                <button>Settings</button>
+                
             </a>
             {% else %}
             <a href="{% url 'login' %}">
-                <button>Settings</button>
+                
             </a>
             {% endif %}
         </aside>
