@@ -13,6 +13,96 @@ Jarek Elizondo
 ## 📝 User Stories 
 https://docs.google.com/document/d/e/2PACX-1vTa8L-2wFHpCj6CPMM3tuTFSN3lSX4q_s9fNBRpn6slTZDFPWeZoIT6Nfn3Up73G_LbboLEjnDWRpTe/pub
 
+## 📊 Architecture & UML Diagram
+
+Below is the UML Class Diagram illustrating the **Birdie** system architecture, user management, profile extension model, 140-character post structure, and chronological feed controllers:
+
+```mermaid
+classDiagram
+    class User {
+        +int id
+        +string username
+        +string email
+        +string password_hash
+        +boolean is_active
+        +datetime date_joined
+        +login()
+        +logout()
+        +register()
+    }
+
+    class Profile {
+        +int id
+        +User user
+        +string bio
+        +ImageField profile_picture
+        +string location
+        +datetime created_at
+        +edit_profile()
+        +follow(target_profile)
+        +unfollow(target_profile)
+    }
+
+    class Chirp {
+        +int id
+        +User author
+        +string content (140 chars)
+        +datetime created_at
+        +int rebirdie_count
+        +int favorite_count
+        +post_chirp()
+        +delete_chirp()
+    }
+
+    class ReBirdie {
+        +int id
+        +User user
+        +Chirp original_chirp
+        +datetime created_at
+    }
+
+    class Favorite {
+        +int id
+        +User user
+        +Chirp chirp
+        +datetime created_at
+    }
+
+    class ChronologicalTimeline {
+        +User current_user
+        +get_home_feed()
+        +get_user_timeline()
+    }
+
+    class HomeView {
+        +render_home_page()
+    }
+
+    class ProfileView {
+        +render_profile_page()
+    }
+
+    class AuthView {
+        +render_login()
+        +render_register()
+    }
+
+    class EditProfileView {
+        +render_edit_form()
+    }
+
+    User "1" -- "1" Profile : extends (OneToOne)
+    Profile "*" -- "*" Profile : follows / followers
+    User "1" -- "0..*" Chirp : authors
+    User "1" -- "0..*" ReBirdie : creates
+    User "1" -- "0..*" Favorite : stars
+    Chirp "1" -- "0..*" ReBirdie : re-chirped in
+    Chirp "1" -- "0..*" Favorite : favorited in
+    HomeView ..> ChronologicalTimeline : fetches feed
+    ProfileView ..> Profile : queries details
+    EditProfileView ..> Profile : modifies avatar & bio
+    AuthView ..> User : authenticates
+```
 
 RECOMMENDED FEATURES:
 
